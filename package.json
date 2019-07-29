@@ -1,0 +1,22 @@
+{
+  "name": "customreporter_newman",
+  "version": "1.0.0",
+  "description": "newman-reporter-booking",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/egomez99/customreporter_newman.git"
+  },
+  "keywords": [
+    "newman"
+  ],
+  "author": "Eduardo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/egomez99/customreporter_newman/issues"
+  },
+  "homepage": "https://github.com/egomez99/customreporter_newman#readme"
+}

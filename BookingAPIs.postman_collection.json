@@ -1,0 +1,141 @@
+{
+	"info": {
+		"_postman_id": "aa4018b9-ab01-4247-8e94-3ed93055b283",
+		"name": "Booking APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "RESTful Booker",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "87673ea8-dd1f-4668-bbc0-d22d94eb049b",
+						"exec": [
+							"//======1",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);});",
+							"//======2",
+							"pm.test(\"Response time is less than 600ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(600); });",
+							"//======3",
+							"pm.test(\"Server is present\", function () {",
+							"    pm.response.to.have.header(\"Server\");});",
+							"//======4",
+							"pm.test(\"Connection is present\", function () {",
+							"    pm.response.to.have.header(\"Connection\");});",
+							"//======5",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\", \"application/json; charset=utf-8\");});",
+							"//======6",
+							"pm.test(\"Content-Length is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Length\");});",
+							"//======7",
+							"pm.test(\"ETag is present\", function () {",
+							"    pm.response.to.have.header(\"Etag\");});",
+							"//======8",
+							"pm.test(\"Date is present\", function () {",
+							"    pm.response.to.have.header(\"Date\");});    ",
+							"//======9",
+							"pm.test(\"Via is present\", function () {",
+							"    pm.response.to.have.header(\"Via\");});",
+							"    ",
+							"//======10",
+							"pm.test(\"Xpowered present\", function () {",
+							"    pm.response.to.have.header(\"X-Powered-By\", \"Express\");});",
+							"    ",
+							"//======11",
+							"pm.test(\"Last Name Correct\", function () {",
+							"    pm.response.to.have.header(\"X-Powered-By\", \"Express\");});",
+							"    ",
+							"    ",
+							"pm.test(\"Additional Needs\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Breakfast\");",
+							"});",
+							"",
+							"pm.test(\"Last Name matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Mark\");",
+							"});",
+							"",
+							"var jsonData = pm.response.json();",
+							"",
+							" pm.test(\"Correct first name is returned in response\", function () {",
+							"    pm.expect(jsonData.firstname).to.eql(\"Mark\");",
+							"});",
+							"",
+							"var jsonData = pm.response.json();",
+							"",
+							"pm.test(\"Deposit has been paid\", function () {",
+							"    pm.expect(jsonData.depositpaid).to.be.true;",
+							"});",
+							"",
+							"pm.test(\"Checkin and Checkout exists\", function () {",
+							"    pm.expect(jsonData.bookingdates.checkin).to.exist;",
+							"    pm.expect(jsonData.bookingdates.checkout).to.exist;    ",
+							"});",
+							"",
+							"pm.test(\"Total price is greater than 100\", function () {",
+							"    pm.expect(jsonData.totalprice).to.be.above(100);",
+							"});",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://restful-booker.herokuapp.com/booking/1",
+					"protocol": "https",
+					"host": [
+						"restful-booker",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"booking",
+						"1"
+					]
+				},
+				"description": "http://thethinkingtester.blogspot.com/2019/07/one-request-sixteen-assertions.html"
+			},
+			"response": []
+		},
+		{
+			"name": "POST Booking ID",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstname\" : \"Jimmy\",\n    \"lastname\" : \"Page\",\n    \"totalprice\" : 777,\n    \"depositpaid\" : true,\n    \"bookingdates\" : {\n        \"checkin\" : \"2018-01-01\",\n        \"checkout\" : \"2019-01-01\"\n    },\n    \"additionalneeds\" : \"Good Bed\"\n}"
+				},
+				"url": {
+					"raw": "https://www.mwtestconsultancy.co.uk/booking",
+					"protocol": "https",
+					"host": [
+						"www",
+						"mwtestconsultancy",
+						"co",
+						"uk"
+					],
+					"path": [
+						"booking"
+					]
+				},
+				"description": "https://www.mwtestconsultancy.co.uk/booking"
+			},
+			"response": []
+		}
+	]
+}
